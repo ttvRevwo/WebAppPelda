@@ -4,7 +4,11 @@ namespace WebAppPelda.Controllers
 {
     public class CustomerController
     {
-        public List<Customer> GetCustomers()
+        public List<Customer> GetCustomersFromDatabase()
+        {
+
+        }
+        public List<Customer> GetCustomersFromFile()
         {
             List<Customer> customers = new List<Customer>();
             string[] lines = File.ReadAllLines("CustomersDatas.txt").Skip(1).ToArray();
