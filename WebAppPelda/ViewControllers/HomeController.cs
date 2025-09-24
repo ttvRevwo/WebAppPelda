@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using WebAppPelda.Models;
+using WebAppPelda.Controllers;
 
 namespace WebAppPelda.Controllers
 {
