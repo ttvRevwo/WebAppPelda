@@ -1,0 +1,27 @@
+﻿@using WebAppPelda.Models
+@{
+    ViewData["Title"] = "Sub Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Ügyfelek adatai táblázatba</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Név</th>
+                <th>Telefonszám</th>
+                <th>Pontszám</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Customer customer in Model)
+            {
+                <tr>
+                    <td>@customer.Name</td>
+                    <td>@customer.Phone</td>
+                    <td>@customer.Score</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
