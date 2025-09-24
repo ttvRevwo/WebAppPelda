@@ -28,7 +28,7 @@ namespace WebAppPelda.Controllers
 
         public IActionResult CustomerList()
         {
-            List<Customer> customers = new CustomerController().GetCustomersFromFile();
+            List<Customer> customers = new CustomerController().GetCustomersFromDatabase();
             return View(customers);
         }
 

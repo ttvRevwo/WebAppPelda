@@ -1,12 +1,43 @@
-﻿using WebAppPelda.Models;
+﻿using MySql.Data.MySqlClient;
+using WebAppPelda.Models;
 
 namespace WebAppPelda.Controllers
 {
     public class CustomerController
     {
+        static MySqlConnection SQLConnection;
+
+        private static void BuildConnection()
+        {
+            string connectionString = "SERVER = localhost;" +
+                                      "DATABASE= uzlet;" +
+                                      "UID = root;" +
+                                      "PASSWORD =;" +
+                                      "SSL MODE= none;";
+            SQLConnection = new MySqlConnection();
+            SQLConnection.ConnectionString = connectionString;
+
+        }
         public List<Customer> GetCustomersFromDatabase()
         {
-
+            BuildConnection();
+            SQLConnection.Open();
+            string sql = "SELECT * FROM customer";
+            MySqlCommand command = new MySqlCommand(sql, SQLConnection);
+            MySqlDataReader reader = command.ExecuteReader();
+            List<Customer> customers = new List<Customer>();
+            while (reader.Read())
+            {
+                customers.Add(new Customer
+                {
+                    Id = reader.GetInt32("id"),
+                    Name = reader.GetString("name"),
+                    Phone = reader.GetString("phone"),
+                    Score = reader.GetInt32("score")
+                });
+            }
+            SQLConnection.Close();
+            return customers;
         }
         public List<Customer> GetCustomersFromFile()
         {
